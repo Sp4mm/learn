@@ -9,10 +9,41 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        List<String> str = maxSymbols(arrayInputString());
+        List<List<Integer>> str = arrayThreeSort(arrayInputNums());
 
-        System.out.println(str);
+        for (int num : str.get(0)){
+            System.out.println(num);
+        }
+        System.out.println("--------------------------------------");
+        for (int num : str.get(1)){
+            System.out.println(num);
+        }
+        System.out.println("--------------------------------------");
+        for (int num : str.get(2)){
+            System.out.println(num);
+        }
+    }
 
+    public static List<List<Integer>> arrayThreeSort(List<Integer> list){
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> first = new ArrayList<>();
+        List<Integer> second = new ArrayList<>();
+        List<Integer> thired = new ArrayList<>();
+
+        for (int m : list){
+            if(m % 3 == 0){
+                first.add(m);
+            }
+            if (m % 2 == 0) {
+                second.add(m);
+            } else if (m % 3 != 0) thired.add(m);
+
+        }
+
+        res.add(first);
+        res.add(second);
+        res.add(thired);
+        return res;
     }
 
     public static List<String> maxSymbols(List<String> list){
