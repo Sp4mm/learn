@@ -9,13 +9,109 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        arrayTask();
+        List<String> str = maxSymbols(arrayInputString());
+
+        System.out.println(str);
+
+    }
+
+    public static List<String> maxSymbols(List<String> list){
+        List<String> res = new ArrayList<>();
+        int longest = 0;
+
+        for (String every : list){
+            int m = every.length();
+            if (longest < m){
+                longest = m;
+                res.clear();
+                res.add(every);
+            } else if (longest == m) res.add(every);
+        }
+
+        return res;
+    }
+
+    public static List<List<Integer>> arraySplit(List<Integer> list) throws IOException {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> first = new ArrayList<>();
+        List<Integer> second = new ArrayList<>();
+
+
+        for (int i = 0; i < list.size(); i++) {
+            int elem = list.get(i);
+            if (elem % 2 == 0){
+                first.add(elem);
+            } else {
+                second.add(elem);
+            }
+        }
+        res.add(first);
+        res.add(second);
+        return res;
+    }
+
+    public static List<Integer> arrayInputNums() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        List<Integer> list = new ArrayList<>();
+
+        String str;
+
+        while (true) {
+            str = reader.readLine();
+            if (str.isEmpty()) break;
+            list.add(Integer.parseInt(str));
+        }
+        return list;
+    }
+
+    public static List<String> arrayInputString() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        List<String> list = new ArrayList<>();
+
+        String str;
+
+        while (true) {
+            str = reader.readLine();
+            if (str.isEmpty()) break;
+            list.add(str);
+        }
+        return list;
+    }
+
+
+    public static List<Integer> arrayLess5(List<Integer> list) throws IOException{
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) > 5){
+                list.remove(i);
+                i--;
+            }
+        }
+        return list;
+    }
+
+    public static void arraySort() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        List<Integer> list = new ArrayList<>();
+
+        String str;
+
+        while (true){
+            str = reader.readLine();
+            if (str.isEmpty()) break;
+            int res = Integer.parseInt(str);
+
+            if (res % 2 == 1){
+                list.add(0, res);
+
+            } else list.add(res);
+        }
+        for (int res : list) System.out.print(res + " ");
     }
 
     public static void arrayTask() throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         List <Integer> list = new ArrayList<>();
 
         String str = reader.readLine();
