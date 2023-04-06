@@ -1,5 +1,6 @@
 package test;
 
+import javax.lang.model.util.AbstractElementVisitor14;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,19 +10,37 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        List<List<Integer>> str = arrayThreeSort(arrayInputNums());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int num : str.get(0)){
-            System.out.println(num);
+        String str = reader.readLine();
+
+        List<String> string = arrayInputString();
+        fixArray(string);
+        System.out.println(string);
+    }
+
+
+    public static void fixArray(List<String> list){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).contains("л") && list.get(i).contains("р")){
+                continue;
+            } else if (list.get(i).contains("л")){
+                list.add(i,list.get(i));
+                i++;
+            } else if (list.get(i).contains("р")) {
+                list.remove(i);
+                i--;
+            }
         }
-        System.out.println("--------------------------------------");
-        for (int num : str.get(1)){
-            System.out.println(num);
+    }
+
+    public static <T> List<T> refreshArray(List<T> list){
+        List<T> res = new ArrayList<>(list);
+        for (int i = 0; i < res.size(); i++){
+            T m = res.remove(res.size() - 1);
+            res.add(0, m);
         }
-        System.out.println("--------------------------------------");
-        for (int num : str.get(2)){
-            System.out.println(num);
-        }
+        return res;
     }
 
     public static List<List<Integer>> arrayThreeSort(List<Integer> list){
