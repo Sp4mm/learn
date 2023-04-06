@@ -9,12 +9,20 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        List<String> str = arrayInputString();
-        doubleValues(str);
-
-        for(String every : str) System.out.println(every);
+        for (Cat cat : makeCats()) System.out.println(cat);
     }
 
+    public static List<Cat> makeCats() throws IOException {
+        List<Cat> list = new ArrayList<>();
+
+        while (true){
+            Cat cat = Cat.createCat();
+            if (cat == null) break;
+            list.add(cat);
+            System.out.println("/-----------------------------------------/");
+        }
+        return list;
+    }
     public static void doubleValues(List<String> list){
         for (int i = 0; i < list.size(); i++){
             list.set(i, list.get(i) + " " + list.get(i));
