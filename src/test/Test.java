@@ -1,6 +1,5 @@
 package test;
 
-import javax.lang.model.util.AbstractElementVisitor14;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,15 +9,17 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        List<String> str = arrayInputString();
+        doubleValues(str);
 
-        String str = reader.readLine();
-
-        List<String> string = arrayInputString();
-        fixArray(string);
-        System.out.println(string);
+        for(String every : str) System.out.println(every);
     }
 
+    public static void doubleValues(List<String> list){
+        for (int i = 0; i < list.size(); i++){
+            list.set(i, list.get(i) + " " + list.get(i));
+        }
+    }
 
     public static void fixArray(List<String> list){
         for (int i = 0; i < list.size(); i++) {
