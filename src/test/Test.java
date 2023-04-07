@@ -9,7 +9,19 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        System.out.println(revesedNum(-123456789));
+        Human human = new Human("Иван", 41, true);
+        Human human1 = new Human("Иванка", 43, false);
+        Human human2 = new Human("Андрей", 13, true);
+        Human human3 = new Human("Инна", 3, false);
+        human1.setChildren(human2);
+        human1.setChildren(human3);
+        human.setChildren(human2);
+        human.setChildren(human3);
+
+        System.out.println(human);
+        System.out.println(human1);
+        System.out.println(human2);
+        System.out.println(human3);
 
 
     }
