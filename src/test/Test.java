@@ -9,7 +9,23 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        task4();
+        System.out.println(revesedNum(-123456789));
+
+
+    }
+
+    public static int revesedNum(int num){
+        boolean isNegative = false;
+        if (num < 0){
+            isNegative = true;
+            num = -num;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder(Integer.toString(num));
+        stringBuilder.reverse();
+
+        int res = Integer.parseInt(stringBuilder.toString());
+        return isNegative? -res : res;
     }
 
     public static void task4() throws IOException {
