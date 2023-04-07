@@ -9,20 +9,34 @@ import java.util.*;
 public class Test {
     public static void main(String[] args) throws IOException {
 
-        for (Cat cat : makeCats()) System.out.println(cat);
+        task4();
     }
 
-    public static List<Cat> makeCats() throws IOException {
-        List<Cat> list = new ArrayList<>();
+    public static void task4() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        List<String> array = new ArrayList<>();
 
-        while (true){
-            Cat cat = Cat.createCat();
-            if (cat == null) break;
-            list.add(cat);
-            System.out.println("/-----------------------------------------/");
+        int m = Integer.parseInt(reader.readLine());
+        int n = Integer.parseInt(reader.readLine());
+
+        for (int i = 0; i < n; i++) array.add(reader.readLine());
+        for (String s : array) System.out.println(s);
+        for (int i = 0; i < m; i++) array.add(array.remove(0));
+
+        for (String s : array) System.out.println(s);
+    }
+
+    public static List<String> arrayDoubler(List<String> list){
+        List<String> res = new ArrayList<>(list);
+
+        for (int i = 0; i < res.size(); i++) {
+            if (res.get(i).length() % 2 == 0) res.set(i, res.get(i) + " " + res.get(i));
+            else res.set(i, res.get(i) + " " + res.get(i) + " " + res.get(i));
         }
-        return list;
+
+        return res;
     }
+
     public static void doubleValues(List<String> list){
         for (int i = 0; i < list.size(); i++){
             list.set(i, list.get(i) + " " + list.get(i));
@@ -32,7 +46,7 @@ public class Test {
     public static void fixArray(List<String> list){
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).contains("л") && list.get(i).contains("р")){
-                continue;
+
             } else if (list.get(i).contains("л")){
                 list.add(i,list.get(i));
                 i++;
@@ -207,26 +221,26 @@ public class Test {
         return -1;
     }
 
-    public static int findUnique(int[] arr) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i : arr) {
-            if (map.containsKey(i)) {
-                map.put(i, map.get(i) + 1);
-            } else {
-                map.put(i, 1);
+    /*public static int findUnique(int[] arr) {
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int i : arr) {
+                if (map.containsKey(i)) {
+                    map.put(i, map.get(i) + 1);
+                } else {
+                    map.put(i, 1);
+                }
             }
-        }
-        for (int i : arr) {
-            if (map.get(i) == 1) {
-                return i;
+            for (int i : arr) {
+                if (map.get(i) == 1) {
+                    return i;
+                }
             }
-        }
-        return -1; // если уникальный элемент не найден
-    }
+            return -1;
+        }*/
 
-    public static int task2(int[] array){
-        int left = 0;
-        int right = array.length - 1;
+        public static int task2(int[] array){
+            int left = 0;
+            int right = array.length - 1;
 
         while (left <= right){
             int mid = left + (right - left) / 2;
