@@ -8,21 +8,50 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) throws IOException {
+        task2WithMap();
+    }
 
-        Human human = new Human("Иван", 41, true);
-        Human human1 = new Human("Иванка", 43, false);
-        Human human2 = new Human("Андрей", 13, true);
-        Human human3 = new Human("Инна", 3, false);
-        human1.setChildren(human2);
-        human1.setChildren(human3);
-        human.setChildren(human2);
-        human.setChildren(human3);
+    public static void task2WithMap() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Map<String, String> map = new HashMap<>();
 
-        System.out.println(human);
-        System.out.println(human1);
-        System.out.println(human2);
-        System.out.println(human3);
+        while (true){
+            String str = reader.readLine();
+            if (str.isEmpty()) break;
+            map.put(str, reader.readLine());
+        }
+        for (Map.Entry<String, String> stringStringEntry : map.entrySet()) System.out.println(stringStringEntry.getKey());
+    }
 
+    public static void taskWithMap(){
+        Map<String, String> map = new HashMap<>();
+        map.put("abc", "ff");
+        map.put("asd", "vfe");
+        map.put("wed", "fe");
+        map.put("vt", "vrsd");
+
+        for (Map.Entry<String, String> s : map.entrySet()) {
+            System.out.println(s.getKey() + " - " + s.getValue());
+        }
+    }
+
+    public static void stringSort(List<String> list){
+        Collections.sort(list);
+    }
+
+    public static void largestNums() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        List<Integer> res = new ArrayList<>();
+
+        while (true){
+            String str = reader.readLine();
+            if (str.isEmpty()) break;
+            res.add(Integer.parseInt(str));
+        }
+        Collections.sort(res);
+        List<Integer> largestNums = res.subList(res.size() - 4, res.size());
+
+        for (Integer largestNum : largestNums) System.out.println(largestNum);
 
     }
 
