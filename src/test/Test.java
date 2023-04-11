@@ -10,22 +10,29 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        Map<String, String> map = new HashMap<>();
-        map.put("Rooney", "Leo");
-        map.put("Lloris", "Hugo");
-        map.put("Messi", "Leo");
-        map.put("Ronaldo", "Cristiano");
-        map.put("Maldini", "Paolo");
-        map.put("Indzaghi", "Pipo");
-        map.put("Del Piero", "Alesandro");
-        map.put("Balotelli", "Mario");
-        map.put("Gotze", "Mario");
-        map.put("Gomez", "Mario");
+        List<String> list = arrayInputString();
 
-        deleteSameNames(map);
-        for (Map.Entry<String, String> stringStringEntry : map.entrySet()) {
-            System.out.println(stringStringEntry.getKey() + " | " + stringStringEntry.getValue());
+        for (String s : list) {
+            System.out.println(countOfLetters(s));
         }
+    }
+
+    public static Map<Character, Integer> countOfLetters(String entryString){
+        Map<Character, Integer> result = new HashMap<>();
+        char[] list = entryString.toCharArray();
+        Arrays.sort(list);
+        for (int i = 0; i < list.length; i++) {
+            int counter = 0;
+            for (int j = 0; j < list.length; j++) {
+                if (list[i] == list[j]){
+                    counter++;
+                }
+            }
+            i += counter - 1;
+            result.put(list[i], counter);
+        }
+
+        return result;
     }
 
     public static void deleteSameNames(Map<String, String> map){
