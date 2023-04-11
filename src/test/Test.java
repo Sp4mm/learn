@@ -3,12 +3,104 @@ package test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
 
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        task2WithMap();
+        Map<String, String> map = new HashMap<>();
+        map.put("Rooney", "Leo");
+        map.put("Lloris", "Hugo");
+        map.put("Messi", "Leo");
+        map.put("Ronaldo", "Cristiano");
+        map.put("Maldini", "Paolo");
+        map.put("Indzaghi", "Pipo");
+        map.put("Del Piero", "Alesandro");
+        map.put("Balotelli", "Mario");
+        map.put("Gotze", "Mario");
+        map.put("Gomez", "Mario");
+
+        deleteSameNames(map);
+        for (Map.Entry<String, String> stringStringEntry : map.entrySet()) {
+            System.out.println(stringStringEntry.getKey() + " | " + stringStringEntry.getValue());
+        }
+    }
+
+    public static void deleteSameNames(Map<String, String> map){
+        Map<String, String> copy = new HashMap<>(map);
+        for (String value : copy.values()) {
+            int count = 0;
+            for (String s : copy.values()) {
+                if (value.equals(s)){
+                    count++;
+                }
+                if (count > 1){
+                    for (Map.Entry<String, String> stringStringEntry : copy.entrySet()) {
+                        if (stringStringEntry.getValue().equals(value)) {
+                            map.remove(stringStringEntry.getKey());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void removeAllNumbersMoreThan10(Set<Integer> set){
+        Iterator<Integer> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next() > 10) iterator.remove();
+        }
+    }
+
+    public static void task4WithMap(){
+        Map<String, LocalDate> map = new HashMap<>();
+        map.put("Adam", LocalDate.of(1993, Month.DECEMBER, 7));
+        map.put("Den", LocalDate.of(2003, Month.SEPTEMBER, 14));
+        map.put("Phil", LocalDate.of(2012, Month.AUGUST, 17));
+        map.put("Jon", LocalDate.of(1972, Month.JULY, 27));
+        map.put("Mark", LocalDate.of(1983, Month.OCTOBER, 8));
+
+        Iterator<LocalDate> iterator = map.values().iterator();
+        while (iterator.hasNext()){
+            LocalDate date = iterator.next();
+            if (date.getMonthValue() > 5 && date.getMonthValue() < 9){
+                iterator.remove();
+            }
+        }
+        for (Map.Entry<String, LocalDate> s : map.entrySet()) {
+            System.out.println("Name: " + s.getKey() + "\nDate of birth is: " + s.getValue());
+        }
+    }
+
+    public static void task3WithMap(){
+        Map<String, String> map = new HashMap<>();
+        map.put("First", "John");
+        map.put("First1", "Jack");
+        map.put("First2", "Nick");
+        map.put("First3", "Vlad");
+        map.put("First4", "Nick");
+
+        System.out.println(getCountTheSameFirstName(map, "Nick"));
+        System.out.println(getCountTheSameLastName(map, "First"));
+
+    }
+
+    public static int getCountTheSameFirstName(Map<String, String> map, String name){
+        int res = 0;
+        for (String value : map.values()) {
+            if (value.equals(name)) res++;
+        }
+        return res;
+    }
+
+    public static int getCountTheSameLastName(Map<String, String> map, String lastName){
+        int res = 0;
+        for (String s : map.keySet()) {
+            if (s.equals(lastName)) res++;
+        }
+        return res;
     }
 
     public static void task2WithMap() throws IOException {
@@ -20,7 +112,7 @@ public class Test {
             if (str.isEmpty()) break;
             map.put(str, reader.readLine());
         }
-        for (Map.Entry<String, String> stringStringEntry : map.entrySet()) System.out.println(stringStringEntry.getKey());
+        for (String s : map.keySet()) System.out.println(s);
     }
 
     public static void taskWithMap(){
