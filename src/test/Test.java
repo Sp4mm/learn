@@ -10,10 +10,22 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        List<String> list = arrayInputString();
+        Comparator<Robot> compareModel = new RobotModelComparator();
+        Comparator<Robot> comparePower = new RobotPowerComparator();
 
-        for (String s : list) {
-            System.out.println(countOfLetters(s));
+        Map<Robot, Integer> robots = new TreeMap<>(compareModel.thenComparing(comparePower));
+        Robot robot0 = new Robot("Alex", "AG-44", 2, 1);
+        Robot robot1 = new Robot("Nick", "B99", 5, 3);
+        Robot robot2 = new Robot("Bender", "AB08", 12, 6);
+        Robot robot3 = new Robot("Nick", "AG-44", 24, 4);
+
+        robots.put(robot0, 0);
+        robots.put(robot1, 1);
+        robots.put(robot2, 2);
+        robots.put(robot3, 3);
+
+        for (Map.Entry<Robot, Integer> integerRobotEntry : robots.entrySet()) {
+            System.out.println("Index: " + integerRobotEntry.getValue() + ". Robot - " + integerRobotEntry.getKey());
         }
     }
 
