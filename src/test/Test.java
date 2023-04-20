@@ -1,5 +1,10 @@
 package test;
 
+import Users.User;
+import Users.UserAgeCompare;
+import Users.UserNameCompare;
+import Users.UserSalaryCompare;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +15,31 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) throws IOException {
+        usersTask();
+    }
+
+    public static void usersTask() throws IOException {
+        Map<User, String> map = new HashMap<>();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true){
+            User user = User.createUser();
+            if (user == null) break;
+            System.out.println("Position: ");
+            String pos = reader.readLine();
+            map.put(user, pos);
+        }
+
+        Comparator<User> userNameCompare = new UserNameCompare();
+        Comparator<User> userAgeCompare = new UserAgeCompare();
+        Comparator<User> userSalaryCompare = new UserSalaryCompare();
+
+        Set<User> boss = new TreeSet<>();
+
+        System.out.println(map);
+
+    }
+    public static void taskRobots(){
         Comparator<Robot> compareModel = new RobotModelComparator();
         Comparator<Robot> comparePower = new RobotPowerComparator();
 
@@ -28,7 +58,6 @@ public class Test {
             System.out.println("Index: " + integerRobotEntry.getValue() + ". Robot - " + integerRobotEntry.getKey());
         }
     }
-
     public static Map<Character, Integer> countOfLetters(String entryString){
         Map<Character, Integer> result = new HashMap<>();
         char[] list = entryString.toCharArray();
