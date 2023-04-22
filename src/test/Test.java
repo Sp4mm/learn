@@ -13,7 +13,6 @@ public class Test {
 
     }
 
-
     public static Map<Character, Integer> countOfLetters(String entryString){
         Map<Character, Integer> result = new HashMap<>();
         char[] list = entryString.toCharArray();
