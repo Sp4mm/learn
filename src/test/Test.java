@@ -1,10 +1,5 @@
 package test;
 
-import Users.User;
-import Users.UserAgeCompare;
-import Users.UserNameCompare;
-import Users.UserSalaryCompare;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,49 +10,10 @@ import java.util.*;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        usersTask();
-    }
-
-    public static void usersTask() throws IOException {
-        Map<User, String> map = new HashMap<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        while (true){
-            User user = User.createUser();
-            if (user == null) break;
-            System.out.println("Position: ");
-            String pos = reader.readLine();
-            map.put(user, pos);
-        }
-
-        Comparator<User> userNameCompare = new UserNameCompare();
-        Comparator<User> userAgeCompare = new UserAgeCompare();
-        Comparator<User> userSalaryCompare = new UserSalaryCompare();
-
-        Set<User> boss = new TreeSet<>();
-
-        System.out.println(map);
 
     }
-    public static void taskRobots(){
-        Comparator<Robot> compareModel = new RobotModelComparator();
-        Comparator<Robot> comparePower = new RobotPowerComparator();
 
-        Map<Robot, Integer> robots = new TreeMap<>(compareModel.thenComparing(comparePower));
-        Robot robot0 = new Robot("Alex", "AG-44", 2, 1);
-        Robot robot1 = new Robot("Nick", "B99", 5, 3);
-        Robot robot2 = new Robot("Bender", "AB08", 12, 6);
-        Robot robot3 = new Robot("Nick", "AG-44", 24, 4);
 
-        robots.put(robot0, 0);
-        robots.put(robot1, 1);
-        robots.put(robot2, 2);
-        robots.put(robot3, 3);
-
-        for (Map.Entry<Robot, Integer> integerRobotEntry : robots.entrySet()) {
-            System.out.println("Index: " + integerRobotEntry.getValue() + ". Robot - " + integerRobotEntry.getKey());
-        }
-    }
     public static Map<Character, Integer> countOfLetters(String entryString){
         Map<Character, Integer> result = new HashMap<>();
         char[] list = entryString.toCharArray();

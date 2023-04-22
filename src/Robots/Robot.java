@@ -1,4 +1,4 @@
-package test;
+package Robots;
 
 public class Robot {
 
