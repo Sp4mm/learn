@@ -1,21 +1,44 @@
 package recursion;
 
+import java.io.IOException;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static test.Test.arrayInputString;
 
 public class Main {
 
-    public static void main(String[] args) {
-        int[] arr = new int[10];
-        for (int i = 0; i < 10; i++) {
-            arr[i] = i * 10;
+    public static void main(String[] args) throws IOException {
+        List<String> str = arrayInputString();
+
+        System.out.println(countWords(str));
+    }
+
+    public static Map<String, Integer> countWords(List<String> list, Map<String, Integer> map){
+        if (list.isEmpty()) return map;
+        Map<String, Integer> res = new HashMap<>(map);
+        List<String> copy = new ArrayList<>(list);
+        int count = 0;
+
+        Iterator<String> iterator = copy.iterator();
+        while (iterator.hasNext()){
+            if (iterator.next().equals(list.get(0))){
+                iterator.remove();
+                count++;
+            }
         }
-        System.out.println(binarySearch(arr, 60));
+        res.put(list.get(0), count);
+        return countWords(copy, res);
+    }
+
+    public static Map<String, Integer> countWords(List<String> list){
+        Map<String, Integer> res = new HashMap<>();
+
+        return countWords(list, res);
     }
 
     public static int binarySearch(int[] array, int n, int first, int last){
-        int mid = (first + last) / 2;
+        int mid = first + (last - first) / 2;
         if (array[mid] == n) return mid;
         if (array[mid] < n) return binarySearch(array, n, mid + 1, last);
         return binarySearch(array, n, first, last - 1);
